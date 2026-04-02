@@ -6,7 +6,7 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: './', // Use relative paths for maximum compatibility
+    base: process.env.GITHUB_ACTIONS ? '/LingoSort-mp3/' : '/', // Use subpath only on GitHub Actions
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
