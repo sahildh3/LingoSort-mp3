@@ -34,7 +34,7 @@ LingoSort MP3 leverages the power of **WebAssembly (WASM)** to run heavy AI mode
 ## 🛠️ Installation & Setup
 
 ### For Users
-Simply visit the [Live App](https://ais-dev-dlxcwn36p6bpwalpdyodxh-659025496222.asia-east1.run.app) and click "Download Models" to begin.
+Simply visit the [Live App](https://sahildh3.github.io/LingoSort-mp3/) and click "Download Models" to begin.
 
 ### For Developers
 If you want to run this project locally:
