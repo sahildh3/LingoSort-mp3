@@ -470,7 +470,7 @@ export default function App() {
               </div>
               <div className={`p-2 rounded-xl border text-[10px] font-bold text-center flex flex-col items-center gap-1 ${systemCheck.sharedArrayBuffer ? 'bg-emerald-50 border-emerald-100 text-emerald-600' : 'bg-amber-50 border-amber-100 text-amber-600'}`}>
                 <CheckCircle2 className={`w-3 h-3 ${systemCheck.sharedArrayBuffer ? 'text-emerald-500' : 'text-amber-500'}`} />
-                THREADS {systemCheck.sharedArrayBuffer ? 'OK' : 'SLOW'}
+                THREADS {systemCheck.sharedArrayBuffer ? 'OPTIMIZED' : 'LEGACY'}
               </div>
               <div className={`p-2 rounded-xl border text-[10px] font-bold text-center flex flex-col items-center gap-1 ${systemCheck.indexedDB ? 'bg-emerald-50 border-emerald-100 text-emerald-600' : 'bg-red-50 border-red-100 text-red-600'}`}>
                 <CheckCircle2 className={`w-3 h-3 ${systemCheck.indexedDB ? 'text-emerald-500' : 'text-red-500'}`} />
@@ -518,9 +518,9 @@ export default function App() {
               {modelStatus !== 'ready' && modelStatus !== 'loading' && (
                 <button 
                   onClick={initModel}
-                  className="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-md shadow-blue-100"
+                  className="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-md shadow-blue-100 flex items-center gap-2"
                 >
-                  Download Models (~152MB)
+                  <Download className="w-4 h-4" /> Download Models (~152MB)
                 </button>
               )}
             </div>
