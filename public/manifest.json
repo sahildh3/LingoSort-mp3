@@ -1,0 +1,17 @@
+{
+  "name": "LingoSort MP3",
+  "short_name": "LingoSort",
+  "description": "Sort MP3 files by language locally.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
