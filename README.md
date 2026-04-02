@@ -41,7 +41,7 @@ If you want to run this project locally:
 
 1.  **Clone the repo**:
     ```bash
-    git clone https://github.com/yourusername/lingosort-mp3.git
+    git clone https://github.com/sahildh3/LingoSort-mp3.git
     cd lingosort-mp3
     ```
 
