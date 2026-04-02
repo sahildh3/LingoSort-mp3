@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Upload, Music, FileArchive, CheckCircle2, Loader2, X, AlertCircle, Shield, Scale, Info, Trash2, ListFilter } from 'lucide-react';
+import { Upload, Music, FileArchive, CheckCircle2, Loader2, X, AlertCircle, Shield, Scale, Info, Trash2, ListFilter, Download } from 'lucide-react';
 import JSZip from 'jszip';
 import { motion, AnimatePresence } from 'motion/react';
 import { aiService } from './lib/aiService';
