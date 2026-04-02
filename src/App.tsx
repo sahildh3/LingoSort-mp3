@@ -445,7 +445,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center justify-center mb-4"
           >
-            <img src="/logo.svg" alt="LingoSort Logo" className="w-16 h-16 shadow-lg shadow-blue-200 rounded-2xl" />
+            <img src="logo.svg" alt="LingoSort Logo" className="w-16 h-16 shadow-lg shadow-blue-200 rounded-2xl" />
           </motion.div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 mb-2">LingoSort MP3</h1>
           <p className="text-slate-500 mb-4">Organize 100+ files locally with AI. No data leaves your device.</p>
