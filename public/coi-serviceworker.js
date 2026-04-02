@@ -31,18 +31,24 @@ if (typeof window === 'undefined') {
     });
 
     self.addEventListener("fetch", (event) => {
-        if (event.request.cache === "only-if-cached" && event.request.mode !== "same-origin") {
+        const { request } = event;
+        if (request.cache === "only-if-cached" && request.mode !== "same-origin") {
             return;
         }
 
         event.respondWith(
-            caches.match(event.request).then((cached) => {
-                const fetchPromise = fetch(event.request)
+            caches.match(request).then((cached) => {
+                if (cached && !navigator.onLine) {
+                    return cached;
+                }
+
+                return fetch(request)
                     .then((response) => {
-                        if (response.status === 0) {
+                        if (!response || response.status === 0 || response.type === 'opaque') {
                             return response;
                         }
 
+                        // Add COOP/COEP headers
                         const newHeaders = new Headers(response.headers);
                         newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
                         newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
@@ -54,21 +60,19 @@ if (typeof window === 'undefined') {
                         });
 
                         // Cache successful GET requests for non-model files
-                        if (event.request.method === 'GET' && 
-                            !event.request.url.includes('onnx') && 
-                            !event.request.url.includes('bin')) {
+                        if (request.method === 'GET' && 
+                            response.ok &&
+                            !request.url.includes('onnx') && 
+                            !request.url.includes('bin')) {
                             const clone = newResponse.clone();
-                            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+                            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
                         }
 
                         return newResponse;
                     })
                     .catch((e) => {
-                        console.error(e);
-                        return cached; // Fallback to cache if fetch fails
+                        return cached || Response.error();
                     });
-
-                return cached || fetchPromise;
             })
         );
     });
@@ -91,7 +95,13 @@ if (typeof window === 'undefined') {
                 });
 
                 if (registration.active && !navigator.serviceWorker.controller) {
-                    location.reload();
+                    // Only reload if we are not in an iframe to avoid loops in some environments
+                    if (window.self === window.top) {
+                        console.log("Reloading to activate COI Service Worker...");
+                        location.reload();
+                    } else {
+                        console.warn("COI Service Worker active but not controlling. Skipping reload in iframe.");
+                    }
                 }
             });
         }
